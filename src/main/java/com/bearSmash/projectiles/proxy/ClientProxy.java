@@ -2,6 +2,7 @@ package com.bearSmash.projectiles.proxy;
 
 import com.bearSmash.projectiles.client.renderer.entity.RenderNinjastar;
 import com.bearSmash.projectiles.entity.projectile.EntityNinjastar;
+import com.bearSmash.projectiles.item.ItemBatarang;
 import com.bearSmash.projectiles.item.ItemNinjastar;
 import com.bearSmash.projectiles.item.ItemPlayerFireballLarge;
 import com.bearSmash.projectiles.item.ItemPlayerFireballSmall;
@@ -20,5 +21,7 @@ public class ClientProxy extends ServerProxy {
         EntityNinjastar.registerRenders();
         ItemPlayerFireballSmall.registerRenders();
         ItemPlayerFireballLarge.registerRenders();
+        ItemBatarang.registerRenders();
+        EntityNinjastar.registerRenders();
     }
 }

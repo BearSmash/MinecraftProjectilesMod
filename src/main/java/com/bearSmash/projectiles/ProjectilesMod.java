@@ -1,5 +1,6 @@
 package com.bearSmash.projectiles;
 
+import com.bearSmash.projectiles.item.ItemBatarang;
 import com.bearSmash.projectiles.item.ItemNinjastar;
 import com.bearSmash.projectiles.item.ItemPlayerFireballLarge;
 import com.bearSmash.projectiles.item.ItemPlayerFireballSmall;
@@ -25,6 +26,7 @@ public class ProjectilesMod {
     public static Item ninjastar;
     public static Item player_fireball_small;
     public static Item player_fireball_large;
+    public static Item batarang;
 
     @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
     public static ServerProxy proxy;
@@ -37,6 +39,8 @@ public class ProjectilesMod {
         ItemPlayerFireballSmall.register();
         ItemPlayerFireballLarge.preInit();
         ItemPlayerFireballLarge.register();
+        ItemBatarang.preInit();
+        ItemBatarang.register();
     }
 
     @EventHandler
@@ -44,6 +48,7 @@ public class ProjectilesMod {
         ItemNinjastar.init();
         ItemPlayerFireballSmall.init();
         ItemPlayerFireballLarge.init();
+        ItemBatarang.init();
         proxy.registerRenders();
 
     }
@@ -64,6 +69,7 @@ public class ProjectilesMod {
             ninjastar = getRegisteredItem("ninjastar");
             player_fireball_small = getRegisteredItem("player_fireball_small");
             player_fireball_large = getRegisteredItem("player_fireball_large");
+            batarang = getRegisteredItem("batarang");
         }
     }
 }
