@@ -26,8 +26,10 @@ public class ItemNinjastar extends Item{
         this.maxStackSize = 64;
     }
 
-    public static void preInit(){
+    public static Item preInit(){
         ninjastar = new ItemNinjastar().setUnlocalizedName("ninjastar").setCreativeTab(CreativeTabs.tabCombat);
+        register();
+        return ninjastar;
     }
 
     public static void init(){
@@ -82,6 +84,10 @@ public class ItemNinjastar extends Item{
             worldObj.spawnEntityInWorld(star);
         }
         return itemStack;
+    }
+
+    public boolean hasEffect(ItemStack itemStack, int pass){
+        return true;
     }
 
 

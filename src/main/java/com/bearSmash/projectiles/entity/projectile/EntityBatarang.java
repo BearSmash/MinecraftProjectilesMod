@@ -1,13 +1,17 @@
 package com.bearSmash.projectiles.entity.projectile;
 
+import com.bearSmash.projectiles.ProjectilesMod;
 import com.bearSmash.projectiles.client.renderer.entity.RenderBatarang;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.RenderSnowball;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
@@ -15,6 +19,8 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 /**
 * Created by Bear on 3/2/2015.
@@ -29,7 +35,13 @@ public class EntityBatarang extends EntityThrowable {
         onFire = false;
     }
 
-    public EntityBatarang(World world, EntityPlayer player) {
+//    public EntityBatarang(World world, EntityPlayer player) {
+//        super(world, player);
+//        randomTilt = rand.nextInt(360);
+//        onFire = false;
+//    }
+
+    public EntityBatarang(World world, EntityLivingBase player) {
         super(world, player);
         randomTilt = rand.nextInt(360);
         onFire = false;
@@ -39,6 +51,16 @@ public class EntityBatarang extends EntityThrowable {
         super(world, x, y, z);
         randomTilt = rand.nextInt(360);
         onFire = false;
+    }
+
+    public static void preInit(){
+
+    }
+
+    public static void init(){
+        int randomid = EntityRegistry.findGlobalUniqueEntityId();
+        EntityRegistry.registerGlobalEntityID(EntityBatarang.class, ProjectilesMod.batarang.getUnlocalizedName(), randomid);
+        EntityRegistry.registerModEntity(EntityBatarang.class, ProjectilesMod.batarang.getUnlocalizedName(), randomid, ProjectilesMod.modInstance, 128, 1, false);
     }
 
     private void inflictDamage(MovingObjectPosition movingObjectPos){
@@ -107,7 +129,8 @@ public class EntityBatarang extends EntityThrowable {
     }
 
     public static void registerRender(){
-        RenderingRegistry.registerEntityRenderingHandler(EntityBatarang.class, new RenderBatarang(Minecraft.getMinecraft().getRenderManager()));
+        RenderBatarang renderBatarang = new RenderBatarang(Minecraft.getMinecraft().getRenderManager(), ProjectilesMod.modInstance.batarang, Minecraft.getMinecraft().getRenderItem());
+        RenderingRegistry.registerEntityRenderingHandler(EntityBatarang.class, renderBatarang);
     }
 
     public int getRandomTilt() {

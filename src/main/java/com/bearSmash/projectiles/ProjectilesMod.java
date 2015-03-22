@@ -1,5 +1,7 @@
 package com.bearSmash.projectiles;
 
+import com.bearSmash.projectiles.entity.projectile.EntityBatarang;
+import com.bearSmash.projectiles.entity.projectile.EntityNinjastar;
 import com.bearSmash.projectiles.item.ItemBatarang;
 import com.bearSmash.projectiles.item.ItemNinjastar;
 import com.bearSmash.projectiles.item.ItemPlayerFireballLarge;
@@ -12,9 +14,11 @@ import net.minecraft.util.WeightedRandom;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 /**
  *
@@ -31,24 +35,30 @@ public class ProjectilesMod {
     @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
     public static ServerProxy proxy;
 
+    @Instance(Reference.MOD_ID)
+    public static ProjectilesMod modInstance;
+
     @EventHandler
     public void preInit(FMLPreInitializationEvent event){
-        ItemNinjastar.preInit();
-        ItemNinjastar.register();
+        ninjastar = ItemNinjastar.preInit();
+        EntityNinjastar.preInit();
         ItemPlayerFireballSmall.preInit();
         ItemPlayerFireballSmall.register();
         ItemPlayerFireballLarge.preInit();
         ItemPlayerFireballLarge.register();
-        ItemBatarang.preInit();
-        ItemBatarang.register();
+        batarang = ItemBatarang.preInit();
+        EntityBatarang.preInit();
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event){
         ItemNinjastar.init();
+        EntityNinjastar.init();
         ItemPlayerFireballSmall.init();
         ItemPlayerFireballLarge.init();
         ItemBatarang.init();
+        EntityBatarang.init();
+
         proxy.registerRenders();
 
     }
@@ -60,16 +70,5 @@ public class ProjectilesMod {
 
     private static Item getRegisteredItem(String p_getRegisteredItem_0_) {
         return (Item)Item.itemRegistry.getObject(new ResourceLocation(p_getRegisteredItem_0_));
-    }
-
-    static {
-        if (!Bootstrap.isRegistered()) {
-            throw new RuntimeException("Accessed Items before Bootstrap!");
-        } else {
-            ninjastar = getRegisteredItem("ninjastar");
-            player_fireball_small = getRegisteredItem("player_fireball_small");
-            player_fireball_large = getRegisteredItem("player_fireball_large");
-            batarang = getRegisteredItem("batarang");
-        }
     }
 }

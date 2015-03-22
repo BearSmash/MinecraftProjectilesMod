@@ -1,5 +1,6 @@
 package com.bearSmash.projectiles.entity.projectile;
 
+import com.bearSmash.projectiles.ProjectilesMod;
 import com.bearSmash.projectiles.Reference;
 import com.bearSmash.projectiles.client.renderer.entity.RenderNinjastar;
 import net.minecraft.block.Block;
@@ -19,6 +20,7 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 /**
 * Created by Bear on 3/2/2015.
@@ -43,6 +45,16 @@ public class EntityNinjastar extends EntityThrowable {
         super(world, x, y, z);
         randomTilt = rand.nextInt(360);
         onFire = false;
+    }
+
+    public static void preInit(){
+
+    }
+
+    public static void init(){
+        int randomid = EntityRegistry.findGlobalUniqueEntityId();
+        EntityRegistry.registerGlobalEntityID(EntityNinjastar.class, ProjectilesMod.ninjastar.getUnlocalizedName(), randomid);
+        EntityRegistry.registerModEntity(EntityNinjastar.class, ProjectilesMod.ninjastar.getUnlocalizedName(), randomid, ProjectilesMod.modInstance, 128, 1, false);
     }
 
     private void inflictDamage(MovingObjectPosition movingObjectPos){
@@ -111,7 +123,8 @@ public class EntityNinjastar extends EntityThrowable {
     }
 
     public static void registerRender(){
-        RenderingRegistry.registerEntityRenderingHandler(EntityNinjastar.class, new RenderNinjastar(Minecraft.getMinecraft().getRenderManager()));
+        RenderNinjastar renderNinjastar = new RenderNinjastar(Minecraft.getMinecraft().getRenderManager(), ProjectilesMod.modInstance.ninjastar, Minecraft.getMinecraft().getRenderItem());
+        RenderingRegistry.registerEntityRenderingHandler(EntityNinjastar.class, renderNinjastar);
     }
 
     public int getRandomTilt() {

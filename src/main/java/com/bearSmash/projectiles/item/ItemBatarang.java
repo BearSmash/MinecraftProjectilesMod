@@ -12,6 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.RegistryDelegate;
 
 /**
  * Batarang item registration
@@ -24,10 +25,13 @@ public class ItemBatarang extends Item{
     public ItemBatarang(){
         super();
         this.maxStackSize = 64;
+
     }
 
-    public static void preInit(){
+    public static Item preInit(){
         batarang = new ItemBatarang().setUnlocalizedName("batarang").setCreativeTab(CreativeTabs.tabCombat);
+        register();
+        return batarang;
     }
 
     public static void init(){
@@ -40,7 +44,9 @@ public class ItemBatarang extends Item{
 
     public static void register(){
         GameRegistry.registerItem(batarang, batarang.getUnlocalizedName().substring(5));//substring is to remove "tile." before item name
-
+        
+        RegistryDelegate delegate = batarang.delegate;
+        System.out.println("delegate = " + delegate);
     }
 
     public static void registerRenders(){
@@ -75,13 +81,22 @@ public class ItemBatarang extends Item{
         worldObj.playSoundAtEntity(player, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
         if(!worldObj.isRemote){
-            EntityBatarang star = new EntityBatarang(worldObj, player);
-            star.motionX *= 2;
-            star.motionY *= 2;
-            star.motionZ *= 2;
-            worldObj.spawnEntityInWorld(star);
+            EntityBatarang batarang = new EntityBatarang(worldObj, player);
+            batarang.motionX *= 2;
+            batarang.motionY *= 2;
+            batarang.motionZ *= 2;
+            worldObj.spawnEntityInWorld(batarang);
         }
         return itemStack;
+    }
+
+    public boolean hasEffect(ItemStack itemStack, int pass){
+        return true;
+    }
+
+    @Override
+    public boolean hasEffect(ItemStack itemStack) {
+        return false;
     }
 
 
