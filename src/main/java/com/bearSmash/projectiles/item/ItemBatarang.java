@@ -81,7 +81,7 @@ public class ItemBatarang extends Item{
         worldObj.playSoundAtEntity(player, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
         if(!worldObj.isRemote){
-            EntityBatarang batarang = new EntityBatarang(worldObj, player);
+            EntityBatarang batarang = new EntityBatarang(worldObj, player, this, itemStack);
             batarang.motionX *= 2;
             batarang.motionY *= 2;
             batarang.motionZ *= 2;

@@ -18,7 +18,7 @@ import org.lwjgl.opengl.GL11;
  */
 public class RenderNinjastar extends Render {
 
-    private static final ResourceLocation starTexture = new ResourceLocation("textures/items/ninjastar.png");
+    private static final ResourceLocation starTexture = new ResourceLocation("/textures/items/ninjastar.png");
     protected final Item itemNinjastar;
     private final RenderItem renderItemNinjastar;
 
