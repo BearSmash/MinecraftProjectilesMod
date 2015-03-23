@@ -1,6 +1,6 @@
-package com.bearSmash.materials.client.renderer.entity;
+package com.bearSmash.projectiles.client.renderer.entity;
 
-import com.bearSmash.materials.entity.material.EntityBatclaw;
+import com.bearSmash.projectiles.entity.projectile.EntityBatclaw;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -17,7 +17,7 @@ import org.lwjgl.opengl.GL11;
  */
 public class RenderBatclaw extends Render {
 	
-    private static final ResourceLocation clawTexture = new ResourceLocation("textures/items/ninjastar.png");
+    private static final ResourceLocation clawTexture = new ResourceLocation("textures/items/batclaw.png");
 
     public RenderBatclaw(RenderManager renderManager) {
 

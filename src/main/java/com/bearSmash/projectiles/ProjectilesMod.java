@@ -1,16 +1,21 @@
 package com.bearSmash.projectiles;
 
+import com.bearSmash.projectiles.mobs.VanillaDrops;
 import com.bearSmash.projectiles.entity.projectile.EntityBatarang;
 import com.bearSmash.projectiles.entity.projectile.EntityNinjastar;
+import com.bearSmash.projectiles.entity.projectile.EntityBatclaw;
 import com.bearSmash.projectiles.item.ItemBatarang;
 import com.bearSmash.projectiles.item.ItemNinjastar;
 import com.bearSmash.projectiles.item.ItemPlayerFireballLarge;
 import com.bearSmash.projectiles.item.ItemPlayerFireballSmall;
+import com.bearSmash.projectiles.item.ItemBatclaw;
 import com.bearSmash.projectiles.proxy.ServerProxy;
+
 import net.minecraft.init.Bootstrap;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.WeightedRandom;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -31,6 +36,7 @@ public class ProjectilesMod {
     public static Item player_fireball_small;
     public static Item player_fireball_large;
     public static Item batarang;
+    public static Item batclaw;
 
     @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
     public static ServerProxy proxy;
@@ -48,6 +54,10 @@ public class ProjectilesMod {
         ItemPlayerFireballLarge.register();
         batarang = ItemBatarang.preInit();
         EntityBatarang.preInit();
+        EntityBatclaw.registerRender();
+        batclaw = ItemBatclaw.preInit();
+
+        MinecraftForge.EVENT_BUS.register(new VanillaDrops());
     }
 
     @EventHandler
@@ -58,9 +68,10 @@ public class ProjectilesMod {
         ItemPlayerFireballLarge.init();
         ItemBatarang.init();
         EntityBatarang.init();
+        ItemBatclaw.init();
+        EntityBatclaw.init();
 
         proxy.registerRenders();
-
     }
 
     @EventHandler

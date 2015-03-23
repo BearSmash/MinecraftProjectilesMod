@@ -1,7 +1,7 @@
-package com.bearSmash.materials.item;
+package com.bearSmash.projectiles.item;
 
-import com.bearSmash.materials.Reference;
-import com.bearSmash.materials.entity.material.EntityBatclaw;
+import com.bearSmash.projectiles.Reference;
+import com.bearSmash.projectiles.entity.projectile.EntityBatclaw;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -13,6 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.RegistryDelegate;
 
 /**
  * Batclaw item registration
@@ -28,8 +29,10 @@ public class ItemBatclaw extends Item {
         this.maxStackSize = 64;
     }
 
-    public static void preInit(){
+    public static Item preInit(){
         batclaw = new ItemBatclaw().setUnlocalizedName("batclaw").setCreativeTab(CreativeTabs.tabMaterials);
+        register();
+        return batclaw;
     }
 
     public static void init(){
@@ -39,6 +42,8 @@ public class ItemBatclaw extends Item {
     public static void register(){
         GameRegistry.registerItem(batclaw, batclaw.getUnlocalizedName().substring(5));//substring is to remove "tile." before item name
 
+        RegistryDelegate delegate = batclaw.delegate;
+        System.out.println("delegate = " + delegate);
     }
 
     public static void registerRenders(){

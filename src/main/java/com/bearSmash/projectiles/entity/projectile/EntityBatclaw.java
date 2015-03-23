@@ -1,6 +1,7 @@
-package com.bearSmash.materials.entity.material;
+package com.bearSmash.projectiles.entity.projectile;
 
-import com.bearSmash.materials.client.renderer.entity.RenderBatclaw;
+import com.bearSmash.projectiles.ProjectilesMod;
+import com.bearSmash.projectiles.client.renderer.entity.RenderBatclaw;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.item.EntityItem;
@@ -8,6 +9,7 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 
 /**
@@ -27,6 +29,16 @@ public class EntityBatclaw extends EntityItem {
         super(world, x, y, z);
         randomTilt = rand.nextInt(360);
         onFire = false;
+    }
+    
+    public static void preInit(){
+
+    }
+
+    public static void init(){
+        int randomid = EntityRegistry.findGlobalUniqueEntityId();
+        EntityRegistry.registerGlobalEntityID(EntityBatarang.class, ProjectilesMod.batclaw.getUnlocalizedName(), randomid);
+        EntityRegistry.registerModEntity(EntityBatarang.class, ProjectilesMod.batclaw.getUnlocalizedName(), randomid, ProjectilesMod.modInstance, 128, 1, false);
     }
 
 

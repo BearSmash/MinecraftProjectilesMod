@@ -1,7 +1,7 @@
 {
   "parent": "builtin/generated",
   "textures": {
-    "layer0": "materials:items/batclaw"
+    "layer0": "projectiles:items/batclaw"
   },
   "display": {
     "thirdperson": {

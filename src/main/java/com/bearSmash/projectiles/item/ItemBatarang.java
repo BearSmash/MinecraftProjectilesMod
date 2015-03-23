@@ -1,7 +1,9 @@
 package com.bearSmash.projectiles.item;
 
+import com.bearSmash.projectiles.ProjectilesMod;
 import com.bearSmash.projectiles.Reference;
 import com.bearSmash.projectiles.entity.projectile.EntityBatarang;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -36,10 +38,10 @@ public class ItemBatarang extends Item{
 
     public static void init(){
         GameRegistry.addRecipe(new ItemStack(batarang, 5), new Object[]{
-                                                                         "I I",
-                                                                         " F ",
-                                                                         "I I",
-                'I', Items.iron_ingot, 'F', Items.flint});
+                                                                         " C ",
+                                                                         "CIC",
+                                                                         " C ",
+                'I', Items.iron_ingot, 'C', ProjectilesMod.batclaw});
     }
 
     public static void register(){
