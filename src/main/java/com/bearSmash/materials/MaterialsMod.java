@@ -1,0 +1,61 @@
+package com.bearSmash.materials;
+
+import com.bearSmash.materials.item.ItemBatclaw;
+import com.bearSmash.materials.proxy.ServerProxy;
+import com.bearSmash.projectiles.item.ItemBatarang;
+
+import net.minecraft.init.Bootstrap;
+import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.WeightedRandom;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+
+/**
+ *
+ * Created by Bear on 3/12/2015.
+ */
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION)
+public class MaterialsMod {
+
+    public static Item batclaw;
+
+
+    @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
+    public static ServerProxy proxy;
+
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent event){
+        ItemBatclaw.preInit();
+        ItemBatclaw.register();
+        //batclaw = new ItemBatclaw().setUnlocalizedName("batclaw");
+    }
+
+    @EventHandler
+    public void init(FMLInitializationEvent event){
+        ItemBatclaw.init();
+        proxy.registerRenders();
+
+    }
+
+    @EventHandler
+    public void postInit(FMLPostInitializationEvent event){
+
+    }
+
+    private static Item getRegisteredItem(String p_getRegisteredItem_0_) {
+        return (Item)Item.itemRegistry.getObject(new ResourceLocation(p_getRegisteredItem_0_));
+    }
+
+    static {
+        if (!Bootstrap.isRegistered()) {
+            throw new RuntimeException("Accessed Items before Bootstrap!");
+        } else {
+            batclaw = getRegisteredItem("batclaw");
+        }
+    }
+}
