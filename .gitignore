@@ -47,10 +47,14 @@ eclipse/
 .classpath
 .project
 .settings/
+local.properties
+build.properties
+out/production/
+out/
 
 #Gradle files
 gradle/
 .gradle/
 
-#Bin folder   Should be different for every user. 
+#Bin folder   Should be different for every user.
 bin/
