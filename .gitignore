@@ -53,9 +53,9 @@ out/production/
 out/
 
 #IntelliJ files
-#.iws
-#.ipr
-#.iml
+*.iws
+*.ipr
+*.iml
 
 #Gradle files
 gradle/
