@@ -52,6 +52,11 @@ build.properties
 out/production/
 out/
 
+#IntelliJ files
+#.iws
+#.ipr
+#.iml
+
 #Gradle files
 gradle/
 .gradle/
