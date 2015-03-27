@@ -15,14 +15,14 @@ buildscript {
     }
 }
 
-apply plugin: 'fml'
+apply plugin: 'forge'
 
 version = "1.8-0.0.1"
 group= "com.bearSmash.projectiles" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "projectiles"
 
 minecraft {
-    version = "1.8-8.0.20.1023-1.8"
+    version = "1.8-11.14.0.1295-1.8"
     //runDir = "eclipse"
 	if(file('../run').exists()){
 		runDir = "../run/assets"

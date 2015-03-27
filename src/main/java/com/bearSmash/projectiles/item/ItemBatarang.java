@@ -3,7 +3,6 @@ package com.bearSmash.projectiles.item;
 import com.bearSmash.projectiles.ProjectilesMod;
 import com.bearSmash.projectiles.Reference;
 import com.bearSmash.projectiles.entity.projectile.EntityBatarang;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;

@@ -11,10 +11,8 @@ import com.bearSmash.projectiles.item.ItemPlayerFireballSmall;
 import com.bearSmash.projectiles.item.ItemBatclaw;
 import com.bearSmash.projectiles.proxy.ServerProxy;
 
-import net.minecraft.init.Bootstrap;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.WeightedRandom;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -23,7 +21,6 @@ import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 /**
  *
